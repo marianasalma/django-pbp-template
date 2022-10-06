@@ -9,37 +9,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      function fetchData() {
+        $.get("{% url 'wishlist:show_json' %}")
+      }        
+  
+    </script>
   </head>
   <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-  </body>
-</html>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-5 bg-body rounded">
-    <a class="navbar-brand" href="#">Mariana's Wishlist App</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="#">Wishlist</a>
-        <a class="nav-item nav-link" href="{% url 'wishlist:logout' %}">Logout</a>
-      </div>
-    </div>
-  </nav>
-
-<h6>Nama: {{nama}}</h6>
-
-<table class="table table-hover">
+    
+    <h6>Nama: {{nama}}</h6>
+    
+    <table class="table table-hover">
     <tr>
     <th>Nama Barang</th>
     <th>Harga Barang</th>
     <th>Deskripsi</th>
-    </tr>
+  </tr>
     {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
     {% for barang in list_barang %}
     <tr>
-        <th>{{barang.nama_barang}}</th>
+      <th>{{barang.nama_barang}}</th>
         <th>{{barang.harga_barang}}</th>
         <th>{{barang.deskripsi}}</th>
     </tr>
@@ -48,4 +40,6 @@
 <h5>Sesi terakhir login: {{ last_login }}</h5>
 <button class="btn btn-primary" href="{% url 'wishlist:logout' %}">Logout</button>
 
+</body>
+</html>
 {% endblock content %}
